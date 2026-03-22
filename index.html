@@ -10,367 +10,225 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css">
 <style>
 :root {
-  --gold:      #B8860B;
-  --gold-lt:   #f5e9c8;
-  --gold-dk:   #8a6208;
-  --pink:      #f9ccd8;
-  --pink-md:   #e8829a;
-  --green-lt:  #d4edda;
-  --green-dk:  #1e6b30;
-  --blue-lt:   #cce8f8;
-  --blue-dk:   #0a3d6b;
-  --red-lt:    #fde0e0;
-  --red-dk:    #a01010;
-  --text:      #1a1a2e;
-  --text-sm:   #4a4a6a;
-  --border:    #e8dcc8;
-  --row-even:  #fafbff;
-  --row-hover: #fff5f8;
+  --gold:    #B8860B;
+  --gold-lt: #f5e9c8;
+  --gold-dk: #8a6208;
+  --pink:    #FFB7C5;
+  --pink-md: #FF69B4;
+  --green:   #d4edda;
+  --green-dk:#1e6b30;
+  --blue:    #cce8f8;
+  --blue-dk: #0a3d6b;
+  --red-lt:  #fde0e0;
+  --red-dk:  #a01010;
+  --text:    #1a1a2e;
+  --text-sm: #4a4a6a;
+  --border:  #e8dcc8;
 }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 body {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 11px;
-  background: #ffffff;
-  color: var(--text);
-  min-height: 100vh;
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:11px; background:#ffffff; color:var(--text); min-height:100vh;
 }
 
-/* ── top border ── */
+/* ── Topo ── */
 .top-stripe {
-  height: 4px;
-  background: linear-gradient(90deg, var(--pink-md) 0%, var(--gold) 40%, var(--pink-md) 100%);
+  height:4px;
+  background:linear-gradient(90deg,var(--pink-md) 0%,var(--gold) 40%,var(--pink-md) 100%);
 }
-
-/* ── sakura ribbon ── */
 .sakura-bar {
-  text-align: center;
-  font-size: 15px;
-  letter-spacing: 8px;
-  padding: 7px 0;
-  color: var(--pink-md);
-  background: #fff;
-  border-bottom: 1px solid var(--pink);
-  user-select: none;
+  text-align:center; font-size:15px; letter-spacing:8px;
+  padding:7px 0; color:var(--pink-md); background:#fff;
+  border-bottom:1px solid var(--pink); user-select:none;
 }
 
+/* ── Wrapper ── */
 #wrapper {
-  max-width: 1260px;
-  margin: 0 auto;
-  padding: 22px 18px 40px;
-  text-align: center;
+  max-width:1260px; margin:0 auto; padding:20px 16px 44px; text-align:center;
 }
 
-/* ── Header ── */
+/* ── Header card ── */
 #header-card {
-  background: #ffffff;
-  border: 1.5px solid var(--border);
-  border-top: 4px solid var(--gold);
-  border-radius: 0 0 16px 16px;
-  padding: 24px 28px 20px;
-  margin-bottom: 22px;
-  box-shadow: 0 4px 20px rgba(184,134,11,.08), 0 1px 4px rgba(0,0,0,.04);
-  position: relative;
+  background:#ffffff; border:1.5px solid var(--border);
+  border-top:4px solid var(--gold);
+  border-radius:0 0 16px 16px;
+  padding:24px 28px 20px; margin-bottom:20px;
+  box-shadow:0 4px 20px rgba(184,134,11,.08);
+  position:relative;
 }
-#header-card::before, #header-card::after {
-  content: "🌸";
-  position: absolute;
-  top: 16px;
-  font-size: 20px;
-  opacity: .7;
+#header-card::before,#header-card::after {
+  content:"🌸"; position:absolute; top:14px; font-size:20px; opacity:.7;
 }
-#header-card::before { left: 18px; }
-#header-card::after  { right: 18px; }
-
+#header-card::before { left:16px; }
+#header-card::after  { right:16px; }
 #logo {
-  height: 82px;
-  width: auto;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 2px 6px rgba(184,134,11,.15));
+  height:80px; width:auto; margin-bottom:12px;
+  filter:drop-shadow(0 2px 6px rgba(184,134,11,.15));
 }
-
 #titulo {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 8px;
-  line-height: 1.6;
-  letter-spacing: .3px;
+  font-family:'Noto Serif JP',serif; font-size:15px; font-weight:700;
+  color:var(--text); margin-bottom:6px; line-height:1.6; letter-spacing:.3px;
 }
-
 .divider {
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  margin: 8px auto;
+  width:60px; height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:8px auto;
 }
-
 #subtitulo {
-  font-size: 10.5px;
-  color: var(--text-sm);
-  line-height: 1.8;
-  font-weight: 300;
+  font-size:10.5px; color:var(--text-sm); line-height:1.8; font-weight:300;
 }
-#subtitulo strong {
-  color: var(--gold-dk);
-  font-weight: 500;
-}
+#subtitulo strong { color:var(--gold-dk); font-weight:500; }
 
-/* ── Buttons ── */
+/* ── Botões ── */
 #btn-area {
-  margin: 20px 0 14px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
+  margin:20px 0 14px; display:flex; flex-wrap:wrap;
+  justify-content:center; gap:12px;
 }
-
 .btn-pat {
-  padding: 9px 24px;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .5px;
-  border: 1.5px solid var(--gold);
-  border-radius: 40px;
-  cursor: pointer;
-  background: #fff;
-  color: var(--gold);
-  transition: all .22s ease;
-  box-shadow: 0 1px 4px rgba(184,134,11,.10);
+  padding:9px 24px;
+  font-family:'Noto Sans JP',sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:.5px; border:1.5px solid var(--gold); border-radius:40px;
+  cursor:pointer; background:#fff; color:var(--gold);
+  transition:all .22s ease;
+  box-shadow:0 1px 4px rgba(184,134,11,.10);
 }
 .btn-pat:hover {
-  background: var(--gold-lt);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(184,134,11,.18);
+  background:var(--gold-lt); transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(184,134,11,.18);
 }
 .btn-pat.active {
-  background: var(--gold);
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(184,134,11,.30);
-  transform: translateY(-1px);
+  background:var(--gold); color:#fff;
+  box-shadow:0 4px 14px rgba(184,134,11,.30);
+  transform:translateY(-1px);
 }
-
 #btn-download {
-  padding: 9px 24px;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .5px;
-  border: 1.5px solid #4a7fa5;
-  border-radius: 40px;
-  cursor: pointer;
-  background: #fff;
-  color: #4a7fa5;
-  transition: all .22s ease;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 1px 4px rgba(74,127,165,.10);
+  padding:9px 24px;
+  font-family:'Noto Sans JP',sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:.5px; border:1.5px solid #4a7fa5; border-radius:40px;
+  cursor:pointer; background:#fff; color:#4a7fa5;
+  transition:all .22s ease; text-decoration:none;
+  display:inline-flex; align-items:center; gap:6px;
+  box-shadow:0 1px 4px rgba(74,127,165,.10);
 }
 #btn-download:hover {
-  background: #e8f4fb;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(74,127,165,.18);
+  background:#e8f4fb; transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(74,127,165,.18);
 }
 
 /* ── Summary ── */
 #summary-area {
-  display: none;
-  margin: 14px 0 12px;
-  padding: 14px 20px;
-  background: #fff;
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  box-shadow: 0 2px 10px rgba(184,134,11,.06);
-  animation: fadeIn .3s ease;
+  display:none; margin:14px 0 12px; padding:14px 20px;
+  background:#fff; border:1.5px solid var(--border);
+  border-radius:14px; box-shadow:0 2px 10px rgba(184,134,11,.06);
+  animation:fadeIn .3s ease;
 }
-@keyframes fadeIn { from { opacity:0; transform:translateY(6px) } to { opacity:1; transform:none } }
-
-.sum-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+.sum-row { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:12px; }
 .sum-item {
-  padding: 7px 18px;
-  border-radius: 24px;
-  font-weight: 700;
-  font-size: 11px;
-  font-family: 'Noto Sans JP', sans-serif;
-  letter-spacing: .3px;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+  padding:7px 18px; border-radius:24px; font-weight:700;
+  font-size:11px; font-family:'Noto Sans JP',sans-serif; letter-spacing:.3px;
 }
-.sum-cost     { background: var(--gold);    color: #fff; }
-.sum-concluido{ background: var(--green-lt);color: var(--green-dk); }
-.sum-nao      { background: var(--red-lt);  color: var(--red-dk); }
-.sum-andamento{ background: var(--blue-lt); color: var(--blue-dk); }
+.sum-cost     { background:var(--gold);   color:#fff; }
+.sum-concluido{ background:var(--green);  color:var(--green-dk); }
+.sum-nao      { background:var(--red-lt); color:var(--red-dk); }
+.sum-andamento{ background:var(--blue);   color:var(--blue-dk); }
 
 /* ── Table title ── */
 #table-title {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--gold-dk);
-  margin: 14px 0 10px;
-  letter-spacing: .5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  animation: fadeIn .3s ease;
+  font-family:'Noto Serif JP',serif; font-size:14px; font-weight:700;
+  color:var(--gold-dk); margin:14px 0 10px; letter-spacing:.5px;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  animation:fadeIn .3s ease;
 }
-#table-title::before, #table-title::after {
-  content: "";
-  flex: 1;
-  max-width: 80px;
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent, var(--gold));
-}
-#table-title::after {
-  background: linear-gradient(90deg, var(--gold), transparent);
+#table-title::before { background:linear-gradient(90deg,transparent,var(--gold)); }
+#table-title::after  { background:linear-gradient(90deg,var(--gold),transparent); }
+#table-title::before,#table-title::after {
+  content:""; flex:1; max-width:80px; height:1.5px;
 }
 
-/* ── Table ── */
+/* ── Tabela ── */
 #table-area {
-  display: none;
-  overflow-x: auto;
-  background: #fff;
-  border-radius: 12px;
-  border: 1.5px solid var(--border);
-  box-shadow: 0 2px 14px rgba(0,0,0,.05);
-  animation: fadeIn .35s ease;
+  display:none; overflow-x:auto; background:#fff;
+  border-radius:12px; border:1.5px solid var(--border);
+  box-shadow:0 2px 14px rgba(0,0,0,.05);
+  animation:fadeIn .35s ease;
 }
-
 table#pat-table {
-  width: 100% !important;
-  font-size: 10px;
-  font-family: 'Noto Sans JP', sans-serif;
-  border-collapse: collapse;
+  width:100%!important; font-size:10px;
+  font-family:'Noto Sans JP',sans-serif; border-collapse:collapse;
 }
 table#pat-table thead th {
-  background: #cce8f8 !important;
-  color: #000 !important;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 700;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: .6px;
-  text-align: center !important;
-  padding: 10px 6px;
-  border: 1px solid #b0d6ee;
-  white-space: nowrap;
+  background:#cce8f8!important; color:#000!important;
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:700; font-size:10px;
+  text-transform:uppercase; letter-spacing:.6px;
+  text-align:center!important; padding:10px 6px;
+  border:1px solid #b0d6ee; white-space:nowrap;
 }
 table#pat-table thead th:nth-child(2),
-table#pat-table thead th:nth-child(5) {
-  min-width: 180px;
-}
+table#pat-table thead th:nth-child(5) { min-width:180px; }
 table#pat-table tbody td {
-  padding: 7px 6px;
-  border: 1px solid #ece8f2;
-  text-align: center;
-  vertical-align: top;
-  font-size: 10px;
-  line-height: 1.55;
-  background: #fff;
+  padding:7px 6px; border:1px solid #ece8f2;
+  text-align:center; vertical-align:top;
+  font-size:10px; line-height:1.55; background:#fff;
 }
-table#pat-table tbody tr:nth-child(even) td { background: var(--row-even); }
-table#pat-table tbody tr:hover td {
-  background: var(--row-hover);
-  transition: background .15s;
-}
+table#pat-table tbody tr:nth-child(even) td { background:#fafbff; }
+table#pat-table tbody tr:hover td { background:#fff0f5; transition:background .15s; }
 
-.status-concluido {
-  color: var(--green-dk);
-  font-weight: 700;
-  font-size: 10px;
-}
-.status-nao {
-  color: var(--red-dk);
-  font-weight: 700;
-  font-size: 10px;
-}
-.status-andamento {
-  color: var(--blue-dk);
-  font-weight: 700;
-  font-size: 10px;
-}
+.status-concluido { color:var(--green-dk); font-weight:700; font-size:10px; }
+.status-nao       { color:var(--red-dk);   font-weight:700; font-size:10px; }
+.status-andamento { color:var(--blue-dk);  font-weight:700; font-size:10px; }
 
 /* ── DataTables UI ── */
-.dataTables_wrapper {
-  padding: 10px 14px 12px;
-}
+.dataTables_wrapper { padding:10px 14px 12px; }
 .dataTables_wrapper .dataTables_filter,
 .dataTables_wrapper .dataTables_length,
 .dataTables_wrapper .dataTables_info,
 .dataTables_wrapper .dataTables_paginate {
-  font-size: 10px;
-  font-family: 'Noto Sans JP', sans-serif;
-  color: var(--text-sm);
-  margin: 6px 2px;
+  font-size:10px; font-family:'Noto Sans JP',sans-serif;
+  color:var(--text-sm); margin:6px 2px;
 }
 .dataTables_wrapper .dataTables_filter input {
-  border: 1.5px solid var(--border);
-  border-radius: 20px;
-  padding: 3px 10px;
-  font-size: 10px;
-  outline: none;
+  border:1.5px solid var(--border); border-radius:20px;
+  padding:3px 10px; font-size:10px; outline:none;
 }
-.dataTables_wrapper .dataTables_filter input:focus {
-  border-color: var(--gold);
-}
+.dataTables_wrapper .dataTables_filter input:focus { border-color:var(--gold); }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-  border-radius: 6px !important;
-  font-size: 10px !important;
-  padding: 3px 9px !important;
-  margin: 1px !important;
+  border-radius:6px!important; font-size:10px!important;
+  padding:3px 9px!important; margin:1px!important;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-  background: var(--gold) !important;
-  color: #fff !important;
-  border-color: var(--gold) !important;
+  background:var(--gold)!important; color:#fff!important;
+  border-color:var(--gold)!important;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background: var(--gold-lt) !important;
-  color: var(--gold-dk) !important;
-  border-color: var(--border) !important;
+  background:var(--gold-lt)!important; color:var(--gold-dk)!important;
+  border-color:var(--border)!important;
 }
 
-/* ── Footer ── */
+/* ── Rodapé ── */
 #footer {
-  margin-top: 32px;
-  font-size: 9.5px;
-  color: #aaa;
-  padding-top: 10px;
-  border-top: 1px solid var(--pink);
-  font-family: 'Noto Sans JP', sans-serif;
-  letter-spacing: .3px;
+  margin-top:32px; font-size:9.5px; color:#aaa;
+  padding-top:10px; border-top:1px solid var(--pink);
+  font-family:'Noto Sans JP',sans-serif; letter-spacing:.3px;
 }
 
-/* ── Responsive ── */
-@media (max-width: 640px) {
-  #titulo { font-size: 12px; }
-  .btn-pat, #btn-download { font-size: 10px; padding: 7px 16px; }
+/* ── Responsivo ── */
+@media(max-width:640px) {
+  #titulo { font-size:12px; }
+  .btn-pat, #btn-download { font-size:10px; padding:7px 16px; }
   table#pat-table thead th,
-  table#pat-table tbody td { font-size: 9px; }
-  #header-card::before, #header-card::after { display: none; }
-  .sum-item { font-size: 10px; padding: 6px 12px; }
+  table#pat-table tbody td { font-size:9px; }
+  #header-card::before,#header-card::after { display:none; }
+  .sum-item { font-size:10px; padding:6px 12px; }
 }
 </style>
 </head>
 <body>
 
 <div class="top-stripe"></div>
-<div class="sakura-bar">🌸 &nbsp; ⛩️ &nbsp; 🌸 &nbsp; 🍃 &nbsp; 🌸 &nbsp; ⛩️ &nbsp; 🌸 &nbsp; 🍃 &nbsp; 🌸 &nbsp; ⛩️ &nbsp; 🌸 &nbsp; 🍃 &nbsp; 🌸</div>
+<div class="sakura-bar">🌸 &nbsp;⛩️&nbsp; 🌸 &nbsp;🍃&nbsp; 🌸 &nbsp;⛩️&nbsp; 🌸 &nbsp;🍃&nbsp; 🌸 &nbsp;⛩️&nbsp; 🌸 &nbsp;🍃&nbsp; 🌸</div>
 
 <div id="wrapper">
 
@@ -380,7 +238,8 @@ table#pat-table tbody tr:hover td {
     <div class="divider"></div>
     <div id="subtitulo">
       <strong>Responsáveis da Gestão 2024-2026:</strong><br>
-      Lisa Ribeiro &nbsp;·&nbsp; Wendell Martins &nbsp;·&nbsp; Jonas Gomes &nbsp;·&nbsp; Danilo Chui &nbsp;·&nbsp; Euler Guimarães &nbsp;·&nbsp; Sylker Teles &nbsp;·&nbsp; Vladmir Takeda
+      Lisa Ribeiro &nbsp;·&nbsp; Wendell Martins &nbsp;·&nbsp; Jonas Gomes &nbsp;·&nbsp;
+      Danilo Chui &nbsp;·&nbsp; Euler Guimarães &nbsp;·&nbsp; Sylker Teles &nbsp;·&nbsp; Vladmir Takeda
     </div>
   </div>
 
@@ -422,7 +281,8 @@ table#pat-table tbody tr:hover td {
   </div>
 
   <div id="footer">
-    🌸 &nbsp; AMEOJAPÃO – Associação dos ex-bolsistas do Japão na Amazônia Ocidental &nbsp;|&nbsp; Gestão 2024-2026 &nbsp; 🌸
+    🌸 &nbsp; AMEOJAPÃO – Associação dos ex-bolsistas do Japão na Amazônia Ocidental
+    &nbsp;|&nbsp; Gestão 2024-2026 &nbsp; 🌸
   </div>
 
 </div>
@@ -430,16 +290,15 @@ table#pat-table tbody tr:hover td {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
 <script>
-var PAT_DATA = {"PAT2024": {"cost": 2598.5, "total": 19, "concluido": 15, "nao_concluido": 4, "em_andamento": 0, "rows": [{"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar a eleição para eleger a Diretoria", "QUEM": "Cônsul , VC, CGA, RP do CGJ, Presidentre e associados", "QUANDO_ONDE": "09/03/2024; 14h30; no Consulado Geral do Japão em Manaus", "COMO": "Assembleia, levantamento de candidatos e votação; elaboração e divulgação da Ata", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Participar do XVII Encontro Nacional de Ex-Bolsistas do Governo Japonês", "QUEM": "Ex-Presidente da Ameojapão", "QUANDO_ONDE": "23/03/2024; Embaixada do Japão no Brasil em Brasília", "COMO": "Dialogar com CGJ em Manaus sobre as passagens e diárias; Preparar e apresentar as ações da Ameojapão.", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Criar o site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social", "QUANDO_ONDE": "De 06 de abril de 2024 a 06 de abril de 2025; Internet", "COMO": "Criar domínio, fazer pagamento annual de plano premium Wix.com LTD; utilizar plataforma EDX para elaborar as principais partes do do site.", "CUSTO": "262.5", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Divulgar e manter atualizado o site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social", "QUANDO_ONDE": "De 13 de abril a 31 de dezembro de 2024; Internet", "COMO": "Utilizar plataforma EDX para elaborar e manter conteúdo do site.", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Criar e utilizar e-mail oficial da ameojapao - diretoria@ameojapao.org", "QUEM": "Diretor Social e Membros da Diretoria", "QUANDO_ONDE": "De 07 de abril a 07 de abril de 2025; Internet", "COMO": "Compra anual junto a Wix.com de business e-mail - google workplace starter", "CUSTO": "336", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Digulgar as ações da Ameojapão e dos associados no facebook e instragram", "QUEM": "Membros da Diretoria e Conselheiro consultivo", "QUANDO_ONDE": "Todo o período de 2024,internet", "COMO": "Contas sociais da Ameojapão", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para alunos de ensino médio de escolas públicas sobre as Bolsas de Estudos de Graduação do Governo do Japão", "QUEM": "Diretor Social", "QUANDO_ONDE": "17 de abril das 14h às 15h na Escola Jacimar da Silva Gama; 18 de abril de 2024, das 16h as 17h15 e das 19h as 20h15,  no Auditório da Escola Estadual Tiradentes", "COMO": "Negociação de agendamento junto as escolas; Plataforma Genial.ly; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para os universitários sobre as Bolsas de Estudos de Pós Graduação do Governo do Japão", "QUEM": "Diretor Social, Presidente, Diretor Financeiro e Associado", "QUANDO_ONDE": "04/04 (10h-10h30 na ESA da UEA); 09/04 (16h-16; EST da UEA); 10/4 (18h-18h30; FD da UEA); 27/04 (17h - 19h; Zoom-virtual); 29/04 (18h-20h; FT da UFAM)", "COMO": "Negociação para agendamento junto as universidades; Plataforma Genial.ly; Plataforma Zoom; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestra para estudantes do fundamental de escola pública sobre \"Como o Japão cuida do Meio Ambiente\"", "QUEM": "Diretor Social", "QUANDO_ONDE": "19 de abril de 2024 das 14h às 16h no auditório da Escola Estadual de Tempo Integral Bilíngue Professor Djalma da Cunha Batista", "COMO": "Negociação com diretoria da escola; Plataforma Genial.ly; Site Ameojapão; Site da Embaixada do GJB", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Realizar palestra virtual para alunos de pós-graduação sobre\"Descarbonização no Japão: estratégica de crescimento verde por meio da neutralização do carbono até 2050\"", "QUEM": "Diretor Social", "QUANDO_ONDE": "07 de maio de 2024 das 10h às 11h30 via virtual para alunos da cidade de Itacoatiara que participam do Programa de Pós-graduação em C&T para Recursos Amazônicos do ICET/UFAM", "COMO": "Recebimento de convite de gestor da UFAM/Itacoatiara; usos de Plataforma do Google Meet,e Plataforma Genial.ly", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar reunião da Diretoria para conhecer a pauta e decisões tomadas no XVII Encontro Nacional de Ex-Bolsistas do Governo Japonês, bem como construir a minuta do Plano Annual de Trabalho e definir próxima reunião com os associados", "QUEM": "Ex-Presidente da Ameojapão, Diretoria e Membros do CGJ", "QUANDO_ONDE": "15/06/24 no Consulado Geral do Japão em Manaus das 18h as 19h", "COMO": "Apresentação oral, Brainstorming, Debate, Planilha eletrônica com modelo de Plano de Trabalho", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar reunião virtual com os associados eleger os conselheiros consultivos; consolidar o plano de trabalho e fixar valor da contribuição anual dos associados", "QUEM": "Diretoria, Associados e colaboradores do CGJ", "QUANDO_ONDE": "06 de julho de 2024 (sábado) - 20h - Zoom. Entrar https://tinyurl.com/3k64skyc  - ID: 924 7161 8997 - Senha: Sy15dp", "COMO": "Utilizar plataforma zoom, uso de e-mail e whats app para enviar convite e proposta de Plano de Trabalho", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Atualizar o cadastro e obter sugestões dos bolsistas ou ex-bolsistas do Governo do Japão", "QUEM": "Diretor Social e RPCGJ", "QUANDO_ONDE": "24 de junho a 31 de julho de 2024 - virtual, e-mail com envio do convite e link também via Consulado Geral do Japão em dia de sexta a combinar", "COMO": "Uso de e-mail, whats app e o seguinte formulário eletrônico - https://form.typeform.com/to/XPKmw8HZ", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB6", "PRINCIPAIS_ACOES": "Apoiar o CGJ no processo de seleção e orientação dos novos bolsistas", "QUEM": "Presidente e associados convidados pelo CGJM", "QUANDO_ONDE": "Junho e Julho de 2024 no Consulado Geral do Japão em Manaus", "COMO": "Análise dos Projetos de Pesquisa, Entrevista", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "-", "PRINCIPAIS_ACOES": "Obter o CNPJ da associação", "QUEM": "Presidente ou Membro da Diretoria autorizado", "QUANDO_ONDE": "Até agosto de 2024; Receita Federal", "COMO": "Ata de Fundação; Ata de eleição, Estatuto, DBE, CI do Responsável - https://tinyurl.com/2j2ey727", "CUSTO": "0", "STATUS": "Não concluído"}, {"CODOBJ": "-", "PRINCIPAIS_ACOES": "Abrir conta bancária, definir valor da doação anual; receber e gerenciar as doações dos associados", "QUEM": "Diretor Financeiro", "QUANDO_ONDE": "Setembro a Dezembro de 2024; Internet", "COMO": "Proposta Nubank; Último valor de doação anual era de R$ 50,00 (atualizar com base no custo das anões e número de associados); Prestação de contas na área de Transparência do Site da Ameojapão", "CUSTO": "0", "STATUS": "Não concluído"}, {"CODOBJ": "OB4", "PRINCIPAIS_ACOES": "Apoiar o evento do Jungle Matsuri realizado pela NIPPAKU: com palestra sobre a Bolsa de Pós-Graduação", "QUEM": "Diretor Social, Conselheiro e colaborador do CGJ", "QUANDO_ONDE": "27 a 29 de setembro do Ccvasques", "COMO": "Tenda para Ameojapão divulgar as bolsas e compartilhar experiências, etc", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Até final de 2024, elaborar e revisar os textos do Livro sobre a biografia e experiencias dos bolsistas e ex-bolsistas no Japão para ser divulgado em 2025 - celebração 130 anos de relações diplomáticas", "QUEM": "Secretário Executivo e Diretor Social", "QUANDO_ONDE": "Entre Julho e Dezembro de 2024; Internet", "COMO": "Elaborar Proposta com as orientações para escrever o livro, bem como o Roteiro com o cronograma para convidar os associados a contribuir com a obra", "CUSTO": "0", "STATUS": "Não concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar um evento social com os associados", "QUEM": "Diretoria e Associados", "QUANDO_ONDE": "Entre Outubro e Dezembro de 2024 em local a definir", "COMO": "Escolher via consulta aos associados - Propostas: Passeio de Barco, Jantar, Dia de Jogos, etc", "CUSTO": "2000", "STATUS": "Não concluído"}]}, "PAT2025": {"cost": 3697.84, "total": 16, "concluido": 16, "nao_concluido": 0, "em_andamento": 0, "rows": [{"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Apoiar CGJ na realização da palestra on line Formação no Japão: Oportunidades e vivências", "QUEM": "Diretoria, CGJ, ABAJICA e Study in Japan", "QUANDO_ONDE": "30/01/25; 19h (Manaus); Plataforma Zoom", "COMO": "Apoio no Planejamento; Recebimento do Material de Apresentação; Disponibilização de Plataforma Zoom; Divulgação e Moderação", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Participar do XVIII Encontro Nacional de Ex-Bolsistas do Governo Japonês", "QUEM": "Diretor Social", "QUANDO_ONDE": "08/03/2025; Embaixada do Japão no Brasil em Brasília", "COMO": "Dialogar com CGJ e EJB sobre as passagens e diárias; Preparar e apresentar as ações da Ameojapão; Entregar comprovantes para CGJ", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar Assembleia Geral Ordinária (AGO)", "QUEM": "Cônsul , VC, CGA, RP do CGJ, Presidentre e associados", "QUANDO_ONDE": "22/03/2025; 14h30; no Consulado Geral do Japão em Manaus", "COMO": "Elaborar e enviar Edital aos associados; Preparar AGO; Brainstorming e Aprovação das pautas; Uso de Datashow, Notebook e Internet", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Pagar E-mail, domínio e plano prêmio anual de hospedagem do site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social e Diretor Financeiro", "QUANDO_ONDE": "De 07 de março a 06 de abril de 2026; Internet", "COMO": "Fazer pagamento annual do e-mail, domínio e plano premium Wix.com LTD", "CUSTO": "807.01", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Divulgar e manter atualizado o site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2025; Internet", "COMO": "Utilizar plataforma EDX para elaborar e manter conteúdo do site.", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Utilizar e-mail oficial da ameojapao - diretoria@ameojapao.org", "QUEM": "Diretor Social e Membros da Diretoria", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2025; Internet", "COMO": "Uso do business e-mail - google workplace starter", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Digulgar as ações da Ameojapão e dos associados no facebook e instragram", "QUEM": "Membros da Diretoria e Conselheiro consultivo", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2025; Internet", "COMO": "Contas sociais da Ameojapão", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para alunos de ensino médio de escolas públicas sobre as Bolsas de Estudos de Graduação do Governo do Japão", "QUEM": "Diretor Social, Presidente, Diretor Financeiro e Associado", "QUANDO_ONDE": "16/04 das 14h às 15h na EETI Bilíngue Jacimar Gama (Bolsa de Graduação)", "COMO": "Agendamento junto à escolas; Plataforma Genial.ly; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para os universitários sobre as Bolsas de Estudos de Pós Graduação do Governo do Japão", "QUEM": "Diretor Social, Presidente, Diretor Financeiro e Associado", "QUANDO_ONDE": "11/04 no Auditório da EST da UEA das 15h-17h;  15/04 no Auditório Rio Javari da FT/UFAM) das 17h-18h; 26/04 (17h - 18h-20h; Zoom-virtual)", "COMO": "Negociação para agendamento junto as universidades; Plataforma Genial.ly; Plataforma Zoom; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Atualizar o cadastro com dados dos novos associados", "QUEM": "Diretor Social", "QUANDO_ONDE": "22 a 30 de março de 2025 - e-mail com envio do link para os novos associados", "COMO": "Uso de e-mail, whats app e site https://www.ameojapao.org/associados", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB6", "PRINCIPAIS_ACOES": "Apoiar o CGJ no processo de seleção e orientação dos novos bolsistas", "QUEM": "Presidente e associados convidados pelo CGJM", "QUANDO_ONDE": "Junho e Julho de 2025 no Consulado Geral do Japão em Manaus", "COMO": "Análise dos Projetos de Pesquisa, Entrevista", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "-", "PRINCIPAIS_ACOES": "Obter o CNPJ, Alvará de Funcionamento e Localização e Inscrição Municipal da associação", "QUEM": "Presidente e Diretor Social autorizado", "QUANDO_ONDE": "Até julho de 2025; Receita Federal e PMM", "COMO": "Ata de Fundação; Ata de eleição, Estatuto, DBE, CI do Responsável - https://tinyurl.com/2j2ey727", "CUSTO": "480.83", "STATUS": "Concluído"}, {"CODOBJ": "-", "PRINCIPAIS_ACOES": "Abrir conta bancária, receber e gerenciar as doações dos associados", "QUEM": "Diretor Financeiro e Diretor Social", "QUANDO_ONDE": "Junho a Dezembro de 2025; Internet", "COMO": "Proposta Banco Cora; doação anual maior ou igual a R$ 50,00; Prestação de contas na área de Transparência do Site da Ameojapão", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB4", "PRINCIPAIS_ACOES": "Apoiar a Feira Study in Japan a ser realizada na Faculdade de Tecnologia da UFAM por representantes de universidades Japonesas", "QUEM": "Diretor Social, Conselheiro e colaborador do CGJ", "QUANDO_ONDE": "11 e 12 de setembro de 2025 no Auditório Rio Javari da Faculdade de Tecnologia da UFAM", "COMO": "Apoio logístico, material de divulgação, uso do site e voluntários para divulgar as bolsas e compartilhar experiências, etc", "CUSTO": "210", "STATUS": "Concluído"}, {"CODOBJ": "OB4", "PRINCIPAIS_ACOES": "Apoiar o evento do Jungle Matsuri realizado pela NIPPAKU: com palestra sobre a Bolsa de Pós-Graduação", "QUEM": "Diretor Social, Conselheiro e colaborador do CGJ", "QUANDO_ONDE": "26 e 27 de setembro de 2025 no CC Vasco Vasques", "COMO": "Uso do site e voluntários para divulgar as bolsas e compartilhar experiências, etc", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Lançar em 04 de dezembro de 2025, o e-book \"Um olhar Amazônico sobre o Japão: aprendizados e experiências que transformam vidas\" em comemoração aos 130 anos de amizade Brasil e Japão", "QUEM": "Diretoria, CGJ, alunos do curso de Design da UFAM e total de 16 Autores", "QUANDO_ONDE": "Pré-lançamento: entre 19h e 21h do dia 27 de novembro de 2025, ocorreu na residência oficial do Cônsul-Geral do Japão em Manaus; Lançamento oficial: No dia 4/12/25 a partir das 19h no auditório Rio Javari da FT/UFAM", "COMO": "Elaborar, lançar e divulgar edital com as orientações e template para escrever o livro; Receber propostas; Revisar textos, Elaborar capa; Definir Editora, ISBN, data e local de lançamento", "CUSTO": "2200", "STATUS": "Concluído"}]}, "PAT2026": {"cost": 3207.01, "total": 14, "concluido": 3, "nao_concluido": 0, "em_andamento": 11, "rows": [{"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Apoiar CGJ na realização do evento “Seu Futuro com o Japão: Encontro com Empresas Japonesas em Manaus”", "QUEM": "CGJ, Diretor Social e Associados", "QUANDO_ONDE": "14/03/26; 9h às 13h na NIPPAKU", "COMO": "Divulgação das Bolsas", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Participar do XIX Encontro Nacional de Ex-Bolsistas do Governo Japonês", "QUEM": "Conselheiro Fiscal", "QUANDO_ONDE": "28/02/2026; Embaixada do Japão no Brasil em Brasília", "COMO": "Dialogar com CGJ e EJB sobre as passagens e diárias; Preparar e apresentar as ações da Ameojapão; Entregar comprovantes para CGJ", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar Assembleia Geral Ordinária (AGO) e Eleger nova equipe de gestão", "QUEM": "Cônsul , VC, CGA, RP do CGJ, Presidentre e associados", "QUANDO_ONDE": "21/03/2026; 14h; no Consulado Geral do Japão em Manaus", "COMO": "Elaborar e enviar Edital aos associados; Preparar AGO; Elaborar PTA e Prestação de Contas: Disponibilizar no Site; Brainstorming e Aprovação das pautas; Uso de Datashow, Notebook e Internet", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Pagar E-mail, domínio e plano prêmio anual de hospedagem do site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social e Diretor Financeiro", "QUANDO_ONDE": "De 07 de março a 06 de abril de 2026; Internet", "COMO": "Fazer pagamento annual do e-mail, domínio e plano premium Wix.com LTD", "CUSTO": "807.01", "STATUS": "Em andamento"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Divulgar e manter atualizado o site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2026; Internet", "COMO": "Utilizar plataforma EDX para elaborar e manter conteúdo do site.", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Utilizar e-mail oficial da ameojapao - diretoria@ameojapao.org", "QUEM": "Diretor Social e Membros da Diretoria", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2026; Internet", "COMO": "Uso do business e-mail - google workplace starter", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Digulgar as ações da Ameojapão e dos associados no facebook e instragram", "QUEM": "Membros da Diretoria e Conselheiro consultivo", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2026; Internet", "COMO": "Contas sociais da Ameojapão", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para alunos de ensino médio de escolas públicas sobre as Bolsas de Estudos de Graduação do Governo do Japão", "QUEM": "Diretor Social, Presidente, Diretor Financeiro ou Associado", "QUANDO_ONDE": "08/04 das 16/04 das 13h30 às 15h na EETI Bilíngue Jacimar Gama; 23/04 das 13h às 14h no IFAM-Centro", "COMO": "Agendamento junto à escolas; Plataforma Genial.ly; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para os universitários sobre as Bolsas de Estudos de Pós Graduação do Governo do Japão", "QUEM": "Diretor Social, Presidente, Diretor Financeiro ou Associado", "QUANDO_ONDE": "30/03 no Auditório Rio Javari da FT/UFAM) das 18h-20h; 23/04 das 14h às 15h no IFAM-Centro; em Abril no Auditório da EST da UEA das 18h-20h; 25/04 (18h-19h; Zoom-virtual)", "COMO": "Negociação para agendamento junto as universidades; Plataforma Genial.ly; Plataforma Zoom; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Atualizar o cadastro com dados dos associados", "QUEM": "Diretor Social", "QUANDO_ONDE": "Abril de 2026 - e-mail com envio do link para os novos associados", "COMO": "Uso de e-mail, whats app e site https://www.ameojapao.org/associados", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB6", "PRINCIPAIS_ACOES": "Apoiar o CGJ no processo de seleção e orientação dos novos bolsistas", "QUEM": "Presidente e associados convidados pelo CGJM", "QUANDO_ONDE": "Junho e Julho de 2026 no Consulado Geral do Japão em Manaus", "COMO": "Análise dos Projetos de Pesquisa, Entrevista", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "-", "PRINCIPAIS_ACOES": "Fazer campanha de captação de recursos e receber as doações dos associados", "QUEM": "Diretor Financeiro e Diretor Social", "QUANDO_ONDE": "Março a Dezembro de 2026; Internet", "COMO": "Proposta Banco Cora; doação anual maior ou igual a R$ 50,00; Prestação de contas na área de Transparência do Site da Ameojapão", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB4", "PRINCIPAIS_ACOES": "Apoiar o evento do Jungle Matsuri realizado pela NIPPAKU: com palestra sobre a Bolsa de Pós-Graduação", "QUEM": "Diretor Social, Conselheiro e colaborador do CGJ", "QUANDO_ONDE": "Em setembro de 2026 no CC Vasco Vasques", "COMO": "Uso do site e voluntários para divulgar as bolsas e compartilhar experiências, etc", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Lançar o e-book \"Brasil e Japão: caminhos para o enfrentamento das mudanças climáticas\"", "QUEM": "Diretoria, CGJ, Associados, Alunos do curso de Design da UFAM e Autores", "QUANDO_ONDE": "Em setembro (No Jungle Matsuri) ou em dezembro no Auditório Rio Javari da FT/UFAM", "COMO": "Elaborar, lançar e divulgar edital com as orientações e template para escrever o livro; Receber propostas; Revisar textos, Elaborar capa; Definir Editora, ISBN, data e local de lançamento", "CUSTO": "2400", "STATUS": "Em andamento"}]}};
-var dtInstance = null;
-var currentPAT = null;
+var PAT_DATA = {"PAT2024": {"cost": 2598.5, "total": 19, "concluido": 15, "nao_concluido": 4, "em_andamento": 0, "rows": [{"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar a eleição para eleger a Diretoria", "QUEM": "Cônsul , VC, CGA, RP do CGJ, Presidentre e associados", "QUANDO_ONDE": "09/03/2024; 14h30; no Consulado Geral do Japão em Manaus", "COMO": "Assembleia, levantamento de candidatos e votação; elaboração e divulgação da Ata", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Participar do XVII Encontro Nacional de Ex-Bolsistas do Governo Japonês", "QUEM": "Ex-Presidente da Ameojapão", "QUANDO_ONDE": "23/03/2024; Embaixada do Japão no Brasil em Brasília", "COMO": "Dialogar com CGJ em Manaus sobre as passagens e diárias; Preparar e apresentar as ações da Ameojapão.", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Criar o site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social", "QUANDO_ONDE": "De 06 de abril de 2024 a 06 de abril de 2025; Internet", "COMO": "Criar domínio, fazer pagamento annual de plano premium Wix.com LTD; utilizar plataforma EDX para elaborar as principais partes do do site.", "CUSTO": "262.5", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Divulgar e manter atualizado o site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social", "QUANDO_ONDE": "De 13 de abril a 31 de dezembro de 2024; Internet", "COMO": "Utilizar plataforma EDX para elaborar e manter conteúdo do site.", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Criar e utilizar e-mail oficial da ameojapao - diretoria@ameojapao.org", "QUEM": "Diretor Social e Membros da Diretoria", "QUANDO_ONDE": "De 07 de abril a 07 de abril de 2025; Internet", "COMO": "Compra anual junto a Wix.com de business e-mail - google workplace starter", "CUSTO": "336", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Digulgar as ações da Ameojapão e dos associados no facebook e instragram", "QUEM": "Membros da Diretoria e Conselheiro consultivo", "QUANDO_ONDE": "Todo o período de 2024,internet", "COMO": "Contas sociais da Ameojapão", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para alunos de ensino médio de escolas públicas sobre as Bolsas de Estudos de Graduação do Governo do Japão", "QUEM": "Diretor Social", "QUANDO_ONDE": "17 de abril das 14h às 15h na Escola Jacimar da Silva Gama; 18 de abril de 2024, das 16h as 17h15 e das 19h as 20h15,  no Auditório da Escola Estadual Tiradentes", "COMO": "Negociação de agendamento junto as escolas; Plataforma Genial.ly; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para os universitários sobre as Bolsas de Estudos de Pós Graduação do Governo do Japão", "QUEM": "Diretor Social, Presidente, Diretor Financeiro e Associado", "QUANDO_ONDE": "04/04 (10h-10h30 na ESA da UEA); 09/04 (16h-16; EST da UEA); 10/4 (18h-18h30; FD da UEA); 27/04 (17h - 19h; Zoom-virtual); 29/04 (18h-20h; FT da UFAM)", "COMO": "Negociação para agendamento junto as universidades; Plataforma Genial.ly; Plataforma Zoom; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestra para estudantes do fundamental de escola pública sobre \"Como o Japão cuida do Meio Ambiente\"", "QUEM": "Diretor Social", "QUANDO_ONDE": "19 de abril de 2024 das 14h às 16h no auditório da Escola Estadual de Tempo Integral Bilíngue Professor Djalma da Cunha Batista", "COMO": "Negociação com diretoria da escola; Plataforma Genial.ly; Site Ameojapão; Site da Embaixada do GJB", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Realizar palestra virtual para alunos de pós-graduação sobre\"Descarbonização no Japão: estratégica de crescimento verde por meio da neutralização do carbono até 2050\"", "QUEM": "Diretor Social", "QUANDO_ONDE": "07 de maio de 2024 das 10h às 11h30 via virtual para alunos da cidade de Itacoatiara que participam do Programa de Pós-graduação em C&T para Recursos Amazônicos do ICET/UFAM", "COMO": "Recebimento de convite de gestor da UFAM/Itacoatiara; usos de Plataforma do Google Meet,e Plataforma Genial.ly", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar reunião da Diretoria para conhecer a pauta e decisões tomadas no XVII Encontro Nacional de Ex-Bolsistas do Governo Japonês, bem como construir a minuta do Plano Annual de Trabalho e definir próxima reunião com os associados", "QUEM": "Ex-Presidente da Ameojapão, Diretoria e Membros do CGJ", "QUANDO_ONDE": "15/06/24 no Consulado Geral do Japão em Manaus das 18h as 19h", "COMO": "Apresentação oral, Brainstorming, Debate, Planilha eletrônica com modelo de Plano de Trabalho", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar reunião virtual com os associados eleger os conselheiros consultivos; consolidar o plano de trabalho e fixar valor da contribuição anual dos associados", "QUEM": "Diretoria, Associados e colaboradores do CGJ", "QUANDO_ONDE": "06 de julho de 2024 (sábado) - 20h - Zoom. Entrar https://tinyurl.com/3k64skyc  - ID: 924 7161 8997 - Senha: Sy15dp", "COMO": "Utilizar plataforma zoom, uso de e-mail e whats app para enviar convite e proposta de Plano de Trabalho", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Atualizar o cadastro e obter sugestões dos bolsistas ou ex-bolsistas do Governo do Japão", "QUEM": "Diretor Social e RPCGJ", "QUANDO_ONDE": "24 de junho a 31 de julho de 2024 - virtual, e-mail com envio do convite e link também via Consulado Geral do Japão em dia de sexta a combinar", "COMO": "Uso de e-mail, whats app e o seguinte formulário eletrônico - https://form.typeform.com/to/XPKmw8HZ", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB6", "PRINCIPAIS_ACOES": "Apoiar o CGJ no processo de seleção e orientação dos novos bolsistas", "QUEM": "Presidente e associados convidados pelo CGJM", "QUANDO_ONDE": "Junho e Julho de 2024 no Consulado Geral do Japão em Manaus", "COMO": "Análise dos Projetos de Pesquisa, Entrevista", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "-", "PRINCIPAIS_ACOES": "Obter o CNPJ da associação", "QUEM": "Presidente ou Membro da Diretoria autorizado", "QUANDO_ONDE": "Até agosto de 2024; Receita Federal", "COMO": "Ata de Fundação; Ata de eleição, Estatuto, DBE, CI do Responsável - https://tinyurl.com/2j2ey727", "CUSTO": "0", "STATUS": "Não concluído"}, {"CODOBJ": "-", "PRINCIPAIS_ACOES": "Abrir conta bancária, definir valor da doação anual; receber e gerenciar as doações dos associados", "QUEM": "Diretor Financeiro", "QUANDO_ONDE": "Setembro a Dezembro de 2024; Internet", "COMO": "Proposta Nubank; Último valor de doação anual era de R$ 50,00 (atualizar com base no custo das anões e número de associados); Prestação de contas na área de Transparência do Site da Ameojapão", "CUSTO": "0", "STATUS": "Não concluído"}, {"CODOBJ": "OB4", "PRINCIPAIS_ACOES": "Apoiar o evento do Jungle Matsuri realizado pela NIPPAKU: com palestra sobre a Bolsa de Pós-Graduação", "QUEM": "Diretor Social, Conselheiro e colaborador do CGJ", "QUANDO_ONDE": "27 a 29 de setembro do Ccvasques", "COMO": "Tenda para Ameojapão divulgar as bolsas e compartilhar experiências, etc", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Até final de 2024, elaborar e revisar os textos do Livro sobre a biografia e experiencias dos bolsistas e ex-bolsistas no Japão para ser divulgado em 2025 - celebração 130 anos de relações diplomáticas", "QUEM": "Secretário Executivo e Diretor Social", "QUANDO_ONDE": "Entre Julho e Dezembro de 2024; Internet", "COMO": "Elaborar Proposta com as orientações para escrever o livro, bem como o Roteiro com o cronograma para convidar os associados a contribuir com a obra", "CUSTO": "0", "STATUS": "Não concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar um evento social com os associados", "QUEM": "Diretoria e Associados", "QUANDO_ONDE": "Entre Outubro e Dezembro de 2024 em local a definir", "COMO": "Escolher via consulta aos associados - Propostas: Passeio de Barco, Jantar, Dia de Jogos, etc", "CUSTO": "2000", "STATUS": "Não concluído"}]}, "PAT2025": {"cost": 3697.84, "total": 16, "concluido": 16, "nao_concluido": 0, "em_andamento": 0, "rows": [{"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Apoiar CGJ na realização da palestra on line Formação no Japão: Oportunidades e vivências", "QUEM": "Diretoria, CGJ, ABAJICA e Study in Japan", "QUANDO_ONDE": "30/01/25; 19h (Manaus); Plataforma Zoom", "COMO": "Apoio no Planejamento; Recebimento do Material de Apresentação; Disponibilização de Plataforma Zoom; Divulgação e Moderação", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Participar do XVIII Encontro Nacional de Ex-Bolsistas do Governo Japonês", "QUEM": "Diretor Social", "QUANDO_ONDE": "08/03/2025; Embaixada do Japão no Brasil em Brasília", "COMO": "Dialogar com CGJ e EJB sobre as passagens e diárias; Preparar e apresentar as ações da Ameojapão; Entregar comprovantes para CGJ", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar Assembleia Geral Ordinária (AGO)", "QUEM": "Cônsul , VC, CGA, RP do CGJ, Presidentre e associados", "QUANDO_ONDE": "22/03/2025; 14h30; no Consulado Geral do Japão em Manaus", "COMO": "Elaborar e enviar Edital aos associados; Preparar AGO; Brainstorming e Aprovação das pautas; Uso de Datashow, Notebook e Internet", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Pagar E-mail, domínio e plano prêmio anual de hospedagem do site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social e Diretor Financeiro", "QUANDO_ONDE": "De 07 de março a 06 de abril de 2026; Internet", "COMO": "Fazer pagamento annual do e-mail, domínio e plano premium Wix.com LTD", "CUSTO": "807.01", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Divulgar e manter atualizado o site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2025; Internet", "COMO": "Utilizar plataforma EDX para elaborar e manter conteúdo do site.", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Utilizar e-mail oficial da ameojapao - diretoria@ameojapao.org", "QUEM": "Diretor Social e Membros da Diretoria", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2025; Internet", "COMO": "Uso do business e-mail - google workplace starter", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Digulgar as ações da Ameojapão e dos associados no facebook e instragram", "QUEM": "Membros da Diretoria e Conselheiro consultivo", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2025; Internet", "COMO": "Contas sociais da Ameojapão", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para alunos de ensino médio de escolas públicas sobre as Bolsas de Estudos de Graduação do Governo do Japão", "QUEM": "Diretor Social, Presidente, Diretor Financeiro e Associado", "QUANDO_ONDE": "16/04 das 14h às 15h na EETI Bilíngue Jacimar Gama (Bolsa de Graduação)", "COMO": "Agendamento junto à escolas; Plataforma Genial.ly; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para os universitários sobre as Bolsas de Estudos de Pós Graduação do Governo do Japão", "QUEM": "Diretor Social, Presidente, Diretor Financeiro e Associado", "QUANDO_ONDE": "11/04 no Auditório da EST da UEA das 15h-17h;  15/04 no Auditório Rio Javari da FT/UFAM) das 17h-18h; 26/04 (17h - 18h-20h; Zoom-virtual)", "COMO": "Negociação para agendamento junto as universidades; Plataforma Genial.ly; Plataforma Zoom; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Atualizar o cadastro com dados dos novos associados", "QUEM": "Diretor Social", "QUANDO_ONDE": "22 a 30 de março de 2025 - e-mail com envio do link para os novos associados", "COMO": "Uso de e-mail, whats app e site https://www.ameojapao.org/associados", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB6", "PRINCIPAIS_ACOES": "Apoiar o CGJ no processo de seleção e orientação dos novos bolsistas", "QUEM": "Presidente e associados convidados pelo CGJM", "QUANDO_ONDE": "Junho e Julho de 2025 no Consulado Geral do Japão em Manaus", "COMO": "Análise dos Projetos de Pesquisa, Entrevista", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "-", "PRINCIPAIS_ACOES": "Obter o CNPJ, Alvará de Funcionamento e Localização e Inscrição Municipal da associação", "QUEM": "Presidente e Diretor Social autorizado", "QUANDO_ONDE": "Até julho de 2025; Receita Federal e PMM", "COMO": "Ata de Fundação; Ata de eleição, Estatuto, DBE, CI do Responsável - https://tinyurl.com/2j2ey727", "CUSTO": "480.83", "STATUS": "Concluído"}, {"CODOBJ": "-", "PRINCIPAIS_ACOES": "Abrir conta bancária, receber e gerenciar as doações dos associados", "QUEM": "Diretor Financeiro e Diretor Social", "QUANDO_ONDE": "Junho a Dezembro de 2025; Internet", "COMO": "Proposta Banco Cora; doação anual maior ou igual a R$ 50,00; Prestação de contas na área de Transparência do Site da Ameojapão", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB4", "PRINCIPAIS_ACOES": "Apoiar a Feira Study in Japan a ser realizada na Faculdade de Tecnologia da UFAM por representantes de universidades Japonesas", "QUEM": "Diretor Social, Conselheiro e colaborador do CGJ", "QUANDO_ONDE": "11 e 12 de setembro de 2025 no Auditório Rio Javari da Faculdade de Tecnologia da UFAM", "COMO": "Apoio logístico, material de divulgação, uso do site e voluntários para divulgar as bolsas e compartilhar experiências, etc", "CUSTO": "210", "STATUS": "Concluído"}, {"CODOBJ": "OB4", "PRINCIPAIS_ACOES": "Apoiar o evento do Jungle Matsuri realizado pela NIPPAKU: com palestra sobre a Bolsa de Pós-Graduação", "QUEM": "Diretor Social, Conselheiro e colaborador do CGJ", "QUANDO_ONDE": "26 e 27 de setembro de 2025 no CC Vasco Vasques", "COMO": "Uso do site e voluntários para divulgar as bolsas e compartilhar experiências, etc", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Lançar em 04 de dezembro de 2025, o e-book \"Um olhar Amazônico sobre o Japão: aprendizados e experiências que transformam vidas\" em comemoração aos 130 anos de amizade Brasil e Japão", "QUEM": "Diretoria, CGJ, alunos do curso de Design da UFAM e total de 16 Autores", "QUANDO_ONDE": "Pré-lançamento: entre 19h e 21h do dia 27 de novembro de 2025, ocorreu na residência oficial do Cônsul-Geral do Japão em Manaus; Lançamento oficial: No dia 4/12/25 a partir das 19h no auditório Rio Javari da FT/UFAM", "COMO": "Elaborar, lançar e divulgar edital com as orientações e template para escrever o livro; Receber propostas; Revisar textos, Elaborar capa; Definir Editora, ISBN, data e local de lançamento", "CUSTO": "2200", "STATUS": "Concluído"}]}, "PAT2026": {"cost": 3707.01, "total": 16, "concluido": 3, "nao_concluido": 0, "em_andamento": 13, "rows": [{"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Apoiar CGJ na realização do evento “Seu Futuro com o Japão: Encontro com Empresas Japonesas em Manaus”", "QUEM": "CGJ, Diretor Social e Associados", "QUANDO_ONDE": "14/03/26; 9h às 13h na NIPPAKU", "COMO": "Divulgação das Bolsas", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Participar do XIX Encontro Nacional de Ex-Bolsistas do Governo Japonês", "QUEM": "Conselheiro Fiscal", "QUANDO_ONDE": "28/02/2026; Embaixada do Japão no Brasil em Brasília", "COMO": "Dialogar com CGJ e EJB sobre as passagens e diárias; Preparar e apresentar as ações da Ameojapão; Entregar comprovantes para CGJ", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar Assembleia Geral Ordinária (AGO) e Eleger nova equipe de gestão", "QUEM": "Cônsul , VC, CGA, RP do CGJ, Presidentre e associados", "QUANDO_ONDE": "21/03/2026; 14h; no Consulado Geral do Japão em Manaus", "COMO": "Elaborar e enviar Edital aos associados; Preparar AGO; Elaborar PTA e Prestação de Contas: Disponibilizar no Site; Brainstorming e Aprovação das pautas; Uso de Datashow, Notebook e Internet", "CUSTO": "0", "STATUS": "Concluído"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Pagar E-mail, domínio e plano prêmio anual de hospedagem do site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social e Diretor Financeiro", "QUANDO_ONDE": "De 07 de março a 06 de abril de 2026; Internet", "COMO": "Fazer pagamento annual do e-mail, domínio e plano premium Wix.com LTD", "CUSTO": "807.01", "STATUS": "Em andamento"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Divulgar e manter atualizado o site da Ameojapão - www.ameojapao.org", "QUEM": "Diretor Social", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2026; Internet", "COMO": "Utilizar plataforma EDX para elaborar e manter conteúdo do site.", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Utilizar e-mail oficial da ameojapao - diretoria@ameojapao.org", "QUEM": "Diretor Social e Membros da Diretoria", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2026; Internet", "COMO": "Uso do business e-mail - google workplace starter", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Digulgar as ações da Ameojapão e dos associados no facebook e instragram", "QUEM": "Membros da Diretoria e Conselheiro consultivo", "QUANDO_ONDE": "De 01 de janeiro a 31 de dezembro de 2026; Internet", "COMO": "Contas sociais da Ameojapão", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para alunos de ensino médio de escolas públicas sobre as Bolsas de Estudos de Graduação do Governo do Japão", "QUEM": "Diretor Social, Presidente, Diretor Financeiro ou Associado", "QUANDO_ONDE": "08/04 das 16/04 das 13h30 às 15h na EETI Bilíngue Jacimar Gama; 23/04 das 13h às 14h no IFAM-Centro", "COMO": "Agendamento junto à escolas; Plataforma Genial.ly; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB2", "PRINCIPAIS_ACOES": "Realizar palestras para os universitários sobre as Bolsas de Estudos de Pós Graduação do Governo do Japão", "QUEM": "Diretor Social, Presidente, Diretor Financeiro ou Associado", "QUANDO_ONDE": "30/03 no Auditório Rio Javari da FT/UFAM) das 18h-20h; 23/04 das 14h às 15h no IFAM-Centro; em Abril no Auditório da EST da UEA das 18h-20h; 25/04 (18h-19h; Zoom-virtual)", "COMO": "Negociação para agendamento junto as universidades; Plataforma Genial.ly; Plataforma Zoom; Site Ameojapão; Consulta aos Procedimentos e documentos da Embaixada e do CGJ sobre o processo de seleção", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Atualizar o cadastro com dados dos associados", "QUEM": "Diretor Social", "QUANDO_ONDE": "Abril de 2026 - e-mail com envio do link para os novos associados", "COMO": "Uso de e-mail, whats app e site https://www.ameojapao.org/associados", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB6", "PRINCIPAIS_ACOES": "Apoiar o CGJ no processo de seleção e orientação dos novos bolsistas", "QUEM": "Presidente e associados convidados pelo CGJM", "QUANDO_ONDE": "Junho e Julho de 2026 no Consulado Geral do Japão em Manaus", "COMO": "Análise dos Projetos de Pesquisa, Entrevista", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "-", "PRINCIPAIS_ACOES": "Fazer campanha de captação de recursos e receber as doações dos associados", "QUEM": "Diretor Financeiro e Diretor Social", "QUANDO_ONDE": "Março a Dezembro de 2026; Internet", "COMO": "Proposta Banco Cora; doação anual maior ou igual a R$ 50,00; Prestação de contas na área de Transparência do Site da Ameojapão", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB4", "PRINCIPAIS_ACOES": "Apoiar o Tyouju Matsuri (Festival da Longevidade)o Shima Matsuri (Festival da Ilha)", "QUEM": "Diretor Social, Diretor Financeiro, Associados e colaborador do CGJ", "QUANDO_ONDE": "Tyoju Matsuri (Maués) no dia 06 de junho e Shima Matsuri (26 e 27 de setembro) em Parintins", "COMO": "Uso do site e voluntários para divulgar as bolsas e compartilhar experiências, etc", "CUSTO": "500", "STATUS": "Em andamento"}, {"CODOBJ": "OB4", "PRINCIPAIS_ACOES": "Apoiar o evento do Jungle Matsuri realizado pela NIPPAKU: com palestra sobre a Bolsa de Pós-Graduação", "QUEM": "Diretor Social, Conselheiro e colaborador do CGJ", "QUANDO_ONDE": "Em outubro de 2026 no CC Vasco Vasques", "COMO": "Uso do site e voluntários para divulgar as bolsas e compartilhar experiências, etc", "CUSTO": "0", "STATUS": "Em andamento"}, {"CODOBJ": "OB5", "PRINCIPAIS_ACOES": "Lançar o e-book \"Brasil e Japão: caminhos para o enfrentamento das mudanças climáticas\"", "QUEM": "Diretoria, CGJ, Associados, Alunos do curso de Design da UFAM e Autores", "QUANDO_ONDE": "Em setembro (No Jungle Matsuri) ou em dezembro no Auditório Rio Javari da FT/UFAM", "COMO": "Elaborar, lançar e divulgar edital com as orientações e template para escrever o livro; Receber propostas; Revisar textos, Elaborar capa; Definir Editora, ISBN, data e local de lançamento", "CUSTO": "2400", "STATUS": "Em andamento"}, {"CODOBJ": "OB1", "PRINCIPAIS_ACOES": "Realizar Jantar de Confraternização para celebrar os 70 anos do Programa de Bolsas de Estudo do MEXT", "QUEM": "Diretor Social, Diretor Financeiro, Associados e colaborador do CGJ", "QUANDO_ONDE": "Em dezembro, local a combinar", "COMO": "Identificar e agendar o local, elaborar e divulgar convites, criar lista de convidados confirmados e celebrar (custo compartilhado)", "CUSTO": "0", "STATUS": "Em andamento"}]}};
+var dtInstance = null, currentPAT = null;
 
 function loadPAT(pat) {
   if (currentPAT === pat) return;
   currentPAT = pat;
 
   document.querySelectorAll('.btn-pat').forEach(function(b){ b.classList.remove('active'); });
-  document.getElementById('btn'+pat).classList.add('active');
+  document.getElementById('btn' + pat).classList.add('active');
 
   var d = PAT_DATA[pat];
   var total = d.total || 1;
@@ -448,6 +307,14 @@ function loadPAT(pat) {
   var pNao  = ((d.nao_concluido / total) * 100).toFixed(1);
   var pAnd  = ((d.em_andamento  / total) * 100).toFixed(1);
   var cost  = 'R$ ' + d.cost.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+
+  // Subtítulo dinâmico
+  var subtitulos = {
+    'PAT2024': '<strong>Responsáveis da Gestão 2024-2026:</strong><br>Lisa Ribeiro &nbsp;·&nbsp; Wendell Martins &nbsp;·&nbsp; Jonas Gomes &nbsp;·&nbsp; Danilo Chui &nbsp;·&nbsp; Euler Guimarães &nbsp;·&nbsp; Sylker Teles &nbsp;·&nbsp; Vladmir Takeda',
+    'PAT2025': '<strong>Responsáveis da Gestão 2024-2026:</strong><br>Lisa Ribeiro &nbsp;·&nbsp; Wendell Martins &nbsp;·&nbsp; Jonas Gomes &nbsp;·&nbsp; Danilo Chui &nbsp;·&nbsp; Euler Guimarães &nbsp;·&nbsp; Sylker Teles &nbsp;·&nbsp; Vladmir Takeda',
+    'PAT2026': '<strong>Responsáveis da Gestão 2026-2028:</strong><br>Euler Guimarães &nbsp;·&nbsp; Nicolas Dias &nbsp;·&nbsp; Jonas Gomes &nbsp;·&nbsp; Luck Gabriel &nbsp;·&nbsp; Ronaldo Bosco &nbsp;·&nbsp; Hugo Sevalho &nbsp;·&nbsp; Tiago Coutinho &nbsp;·&nbsp; Mika Nozawa'
+  };
+  document.getElementById('subtitulo').innerHTML = subtitulos[pat];
 
   document.getElementById('sum-cost').textContent      = '💴 Custo Anual Estimado: ' + cost;
   document.getElementById('sum-concluido').textContent = '✅ Concluído: ' + pConc + '%';
@@ -464,12 +331,14 @@ function loadPAT(pat) {
   tbody.innerHTML = '';
   d.rows.forEach(function(r) {
     var sc = '';
-    if      (r.STATUS.indexOf('Conclu') >= 0)                       sc = 'status-concluido';
-    else if (r.STATUS.toLowerCase().indexOf('andamento') >= 0)      sc = 'status-andamento';
-    else if (r.STATUS.indexOf('Não') >= 0)                          sc = 'status-nao';
+    if      (r.STATUS.indexOf('Conclu')                   >= 0) sc = 'status-concluido';
+    else if (r.STATUS.toLowerCase().indexOf('andamento')  >= 0) sc = 'status-andamento';
+    else if (r.STATUS.indexOf('Não')                      >= 0) sc = 'status-nao';
 
     var custo    = parseFloat(r.CUSTO) || 0;
-    var custoStr = custo > 0 ? 'R$ ' + custo.toLocaleString('pt-BR', {minimumFractionDigits:2}) : '–';
+    var custoStr = custo > 0
+      ? 'R$ ' + custo.toLocaleString('pt-BR', {minimumFractionDigits:2})
+      : '–';
 
     tbody.innerHTML +=
       '<tr>' +
@@ -484,20 +353,20 @@ function loadPAT(pat) {
   });
 
   dtInstance = $('#pat-table').DataTable({
-    paging:     true,
-    searching:  true,
-    ordering:   true,
-    order:      [],
+    paging:    true,
+    searching: true,
+    ordering:  true,
+    order:     [],
     pageLength: 20,
     lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 'Todos']],
     language: {
       search:     'Buscar:',
       lengthMenu: 'Mostrar _MENU_ registros',
       info:       'Exibindo _START_ a _END_ de _TOTAL_ ações',
-      paginate:   { first: '«', last: '»', next: '›', previous: '‹' },
+      paginate:   { first:'«', last:'»', next:'›', previous:'‹' },
       zeroRecords:'Nenhum resultado encontrado'
     },
-    columnDefs: [{ targets: [0,2,3,5,6], className: 'dt-center' }]
+    columnDefs: [{ targets:[0,2,3,5,6], className:'dt-center' }]
   });
 }
 
